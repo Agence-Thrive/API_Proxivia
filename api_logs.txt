@@ -1,0 +1,9 @@
+Request was made to: /
+Request was made to: /
+Request was made to: /user/
+Request was made to: /users/
+Request was made to: /users/
+Request was made to: /users
+Request was made to: /users/
+Request was made to: /api/v1/users/
+TypeError: Cannot read property 'role' of null

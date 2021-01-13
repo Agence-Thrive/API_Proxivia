@@ -1,0 +1,1540 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the documentation of the API of Proxivia. Use the prefix /api/v1/ in local configuration.",
+    "version": "0.1.0",
+    "title": "API Proxivia",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "louis-albert.bui@epitech.eu"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "?",
+  "basePath": "/v1",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/user/": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "user"
+        ],
+        "summary": "Get all users",
+        "description": "This is a route only allowed for Admin account",
+        "operationId": "listUsers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/MongoSchema"
+                  },
+                  {
+                    "$ref": "#/definitions/User"
+                  },
+                  {
+                    "$ref": "#/definitions/UserInDb"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not allowed"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Create an user",
+        "description": "",
+        "operationId": "createUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user object",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/User"
+                  },
+                  {
+                    "$ref": "#/definitions/UserInDb"
+                  },
+                  {
+                    "$ref": "#/definitions/MongoSchema"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "409": {
+            "description": "Conflict in request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Get user by id",
+        "description": "",
+        "operationId": "getUserById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The name that needs to be fetched. Use user1 for testing. ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MongoSchema"
+                },
+                {
+                  "$ref": "#/definitions/User"
+                },
+                {
+                  "$ref": "#/definitions/UserInDb"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not allowed"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Update an user by id",
+        "description": "",
+        "operationId": "updateUserById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id that need to be fetched.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user object",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MongoSchema"
+                },
+                {
+                  "$ref": "#/definitions/User"
+                },
+                {
+                  "$ref": "#/definitions/UserInDb"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not Allowed"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Delete an user by id",
+        "description": "",
+        "operationId": "deleteUserById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id that need to be fetched.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not Allowed"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs user into the system",
+        "description": "",
+        "operationId": "loginUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "The user name for login",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/prospect/": {
+      "post": {
+        "tags": [
+          "Prospect"
+        ],
+        "summary": "Create a prospect",
+        "description": "",
+        "operationId": "createProspect",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user object",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Prospect"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/MongoSchema"
+                  },
+                  {
+                    "$ref": "#/definitions/Prospect"
+                  },
+                  {
+                    "$ref": "#/definitions/ProspectInDb"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not allowed"
+          },
+          "404": {
+            "description": "Prospect not found"
+          }
+        }
+      }
+    },
+    "/prospect/{id}": {
+      "get": {
+        "tags": [
+          "Prospect"
+        ],
+        "summary": "Get a Prospect by id",
+        "description": "Get a prospect by Id. Only allowed if the prospect got the userId of the request in its realEstateAgent field",
+        "operationId": "getProspectById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the training that needs to be fetched.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MongoSchema"
+                },
+                {
+                  "$ref": "#/definitions/Prospect"
+                },
+                {
+                  "$ref": "#/definitions/ProspectInDb"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not allowed"
+          },
+          "404": {
+            "description": "Prospect not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Prospect"
+        ],
+        "summary": "Update a prospect by id",
+        "description": "Update a prospect. Note that this will be only allowed if the userId of the request is in its realEstateAgent field",
+        "operationId": "updateProspectById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id that need to be fetched.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user object",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Prospect"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MongoSchema"
+                },
+                {
+                  "$ref": "#/definitions/Prospect"
+                },
+                {
+                  "$ref": "#/definitions/ProspectInDb"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not allowed"
+          },
+          "404": {
+            "description": "Prospect not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Prospect"
+        ],
+        "summary": "Delete a prospect by id",
+        "description": "Delete a prospect. Note that this will be only allowed if the userId of the request is in its realEstateAgent field",
+        "operationId": "deleteProspectById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id that need to be fetched.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not allowed"
+          },
+          "404": {
+            "description": "Prospect not found"
+          }
+        }
+      }
+    },
+    "/compagny/": {
+      "post": {
+        "tags": [
+          "compagny"
+        ],
+        "summary": "Create a compagny",
+        "description": "",
+        "operationId": "createCompagny",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user object",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Company"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/MongoSchema"
+                  },
+                  {
+                    "$ref": "#/definitions/Company"
+                  },
+                  {
+                    "$ref": "#/definitions/CompanyInDb"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not allowed"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/compagny/{id}": {
+      "get": {
+        "tags": [
+          "compagny"
+        ],
+        "summary": "Get compagny by id",
+        "description": "",
+        "operationId": "getCompagnyById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The name that needs to be fetched.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MongoSchema"
+                },
+                {
+                  "$ref": "#/definitions/Company"
+                },
+                {
+                  "$ref": "#/definitions/CompanyInDb"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not allowed"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "compagny"
+        ],
+        "summary": "Update a compagny by id",
+        "description": "",
+        "operationId": "updateCompagnyById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id that need to be fetched.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user object",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Company"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MongoSchema"
+                },
+                {
+                  "$ref": "#/definitions/Company"
+                },
+                {
+                  "$ref": "#/definitions/CompanyInDb"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not allowed"
+          },
+          "404": {
+            "description": "Compagny not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "compagny"
+        ],
+        "summary": "Delete a compagny by id",
+        "description": "",
+        "operationId": "deleteCompagnyById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id that need to be fetched.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not allowed"
+          },
+          "404": {
+            "description": "Compagny not found"
+          }
+        }
+      }
+    },
+    "/training/": {
+      "post": {
+        "tags": [
+          "training"
+        ],
+        "summary": "Create a training",
+        "description": "Create a training. Only allowed to Admin accounts",
+        "operationId": "createTraining",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user object",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Training"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/MongoSchema"
+                  },
+                  {
+                    "$ref": "#/definitions/Training"
+                  },
+                  {
+                    "$ref": "#/definitions/TrainingInDb"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not allowed"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/training/{id}": {
+      "get": {
+        "tags": [
+          "training"
+        ],
+        "summary": "Get a training by id",
+        "description": "",
+        "operationId": "getTrainingById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The name that needs to be fetched.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MongoSchema"
+                },
+                {
+                  "$ref": "#/definitions/Training"
+                },
+                {
+                  "$ref": "#/definitions/TrainingInDb"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not allowed"
+          },
+          "404": {
+            "description": "Training not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "training"
+        ],
+        "summary": "Update a training by id",
+        "description": "Only allowed to admin account",
+        "operationId": "updateTrainingById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id that need to be fetched.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user object",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Training"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MongoSchema"
+                },
+                {
+                  "$ref": "#/definitions/Training"
+                },
+                {
+                  "$ref": "#/definitions/TrainingInDb"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "401": {
+            "description": "Not allowed"
+          },
+          "404": {
+            "description": "Training not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "training"
+        ],
+        "summary": "Delete a training by id",
+        "description": "Only allowed for admin account",
+        "operationId": "deleteTrainingById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id that need to be fetched.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Training not found with this id"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/training/newer": {
+      "get": {
+        "tags": [
+          "training"
+        ],
+        "summary": "Get training by newer",
+        "description": "",
+        "operationId": "getTrainingByNewer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MongoSchema"
+                },
+                {
+                  "$ref": "#/definitions/Training"
+                },
+                {
+                  "$ref": "#/definitions/TrainingInDb"
+                }
+              ]
+            }
+          },
+          "404": {
+            "description": "No training in db"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/training/title": {
+      "get": {
+        "tags": [
+          "training"
+        ],
+        "summary": "Get training by title",
+        "description": "",
+        "operationId": "getTrainingByTitle",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "title",
+            "description": "The title to search for.",
+            "schema": {
+              "type": "string",
+              "required": [
+                "title"
+              ],
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MongoSchema"
+                },
+                {
+                  "$ref": "#/definitions/Training"
+                },
+                {
+                  "$ref": "#/definitions/TrainingInDb"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/training/trainer": {
+      "get": {
+        "tags": [
+          "training"
+        ],
+        "summary": "Get training by trainer",
+        "description": "",
+        "operationId": "getTrainingByTrainer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "trainer",
+            "description": "The trainer to search for.",
+            "schema": {
+              "type": "string",
+              "required": [
+                "trainer"
+              ],
+              "properties": {
+                "trainer": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MongoSchema"
+                },
+                {
+                  "$ref": "#/definitions/Training"
+                },
+                {
+                  "$ref": "#/definitions/TrainingInDb"
+                }
+              ]
+            }
+          },
+          "404": {
+            "description": "No training found with this trainer"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/training/subject": {
+      "get": {
+        "tags": [
+          "training"
+        ],
+        "summary": "Get training by subject",
+        "description": "",
+        "operationId": "getTrainingBySubject",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "subject",
+            "description": "The trainer to search for.",
+            "schema": {
+              "type": "string",
+              "required": [
+                "subject"
+              ],
+              "properties": {
+                "subject": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MongoSchema"
+                },
+                {
+                  "$ref": "#/definitions/Training"
+                },
+                {
+                  "$ref": "#/definitions/TrainingInDb"
+                }
+              ]
+            }
+          },
+          "404": {
+            "description": "No training found with this subject"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "postal": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "about": {
+          "type": "string"
+        }
+      }
+    },
+    "UserInDb": {
+      "type": "object",
+      "properties": {
+        "document": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Documents"
+          }
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "Admin",
+            "Restricted"
+          ]
+        },
+        "completedProfil": {
+          "type": "boolean"
+        },
+        "tokens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Token"
+          }
+        },
+        "prospect": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Prospect"
+          }
+        }
+      }
+    },
+    "Documents": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "number"
+        },
+        "email": {
+          "type": "string"
+        },
+        "about": {
+          "type": "string"
+        }
+      }
+    },
+    "Company": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "legalType": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "postcode": {
+          "type": "string"
+        },
+        "siret": {
+          "type": "string"
+        },
+        "tva": {
+          "type": "string"
+        },
+        "tCard": {
+          "type": "string"
+        },
+        "commercialChamber": {
+          "type": "string"
+        },
+        "date": {
+          "type": "number"
+        },
+        "mendatoryParticulars": {
+          "type": "string"
+        },
+        "about": {
+          "type": "string"
+        },
+        "mediator": {
+          "type": "string"
+        },
+        "collaborators": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        }
+      }
+    },
+    "CompanyInDb": {
+      "type": "object",
+      "properties": {
+        "master": {
+          "type": "string"
+        },
+        "collaborators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Prospect": {
+      "type": "object",
+      "properties": {
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "postal": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "age": {
+          "type": "number"
+        },
+        "houseValue": {
+          "type": "number"
+        },
+        "commission": {
+          "type": "number"
+        },
+        "area": {
+          "type": "number"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "oui",
+            "peuttre",
+            "non"
+          ]
+        },
+        "houseImage": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ProspectInDb": {
+      "type": "object",
+      "properties": {
+        "realEstateAgent": {
+          "type": "string"
+        },
+        "progress": {
+          "type": "string"
+        }
+      }
+    },
+    "Training": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "trainer": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "difficulty": {
+          "type": "string"
+        }
+      }
+    },
+    "TrainingInDb": {
+      "type": "object",
+      "properties": {
+        "views": {
+          "type": "number"
+        }
+      }
+    },
+    "Token": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "MongoSchema": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "number"
+        },
+        "updatedAt": {
+          "type": "number"
+        }
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
