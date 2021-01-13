@@ -407,7 +407,7 @@ const adminLogin = async (req, res) => {
     return res.status(200).json({ user, token });
   } catch (error) {
     Utility.printLogs(error);
-    res.status(500).json({
+    return res.status(500).json({
       code: 'INTERNAL_SERVER_ERROR',
       description: error.message,
     });

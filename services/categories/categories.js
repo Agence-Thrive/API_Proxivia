@@ -15,7 +15,7 @@ const createCategory = async (req, res) => {
       });
     }
     const { name } = req.body;
-    if (name !== null || name === '') {
+    if (name === null || name === '') {
       return res.status(403).json({
         code: 'FORBIDDEN',
         description: 'Name field can\'t be null or empty',
@@ -130,6 +130,13 @@ const deleteCategory = async (req, res) => {
         description: 'You are not allowed to perform this action',
       });
     }
+    const category = await Categories.findByIdAndRemove(req.params.id);
+    if (category) {
+      return res.status(200).json({
+        description: `Category with id ${req.params.id} deleted successfully`,
+      });
+    }
+    throw new Error('Something went wrong, please try again');
   } catch (error) {
     Utility.printLogs(error);
     return res.status(500).json({

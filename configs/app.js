@@ -35,7 +35,7 @@ module.exports = () => {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
-	"auth": {
+"auth": {
       		"authSource": "admin"
     	},
     	"user": "ProxiviaAdmin",

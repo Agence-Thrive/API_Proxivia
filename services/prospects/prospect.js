@@ -258,6 +258,31 @@ const getProspectWon = async (req, res) => {
   }
 };
 
+const getProspectLost = async (req, res) => {
+  try {
+    const actualUser = await Utility.verifyToken(req.headers.authorization);
+    if (!actualUser || String(actualUser._id) !== req.params.id) {
+      return res.status(401).json({
+        code: 'NOT_ALLOWED',
+        description: 'You are not allowed to perform this action',
+      });
+    }
+    const prospect = await Prospect.ProspectModel.findProspectLost();
+    if (prospect > 0) {
+      return res.status(200).json(prospect);
+    }
+    return res.status(404).json({
+      code: 'BAD_REQUEST_ERROR',
+      description: 'No prospect found',
+    });
+  } catch (error) {
+    return res.status(500).json({
+      code: 'INTERNAL_SERVER_ERROR',
+      description: error.message,
+    });
+  }
+};
+
 const getProspectByCompany = async (req, res) => {
   try {
     const actualUser = await Utility.verifyToken(req.headers.authorization);
@@ -399,6 +424,7 @@ module.exports = {
   updateProspect,
   deleteProspect,
   getProspectWon,
+  getProspectLost,
   getAllProspects,
   getProspectByCompany,
   switchProspect,

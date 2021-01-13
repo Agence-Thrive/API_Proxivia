@@ -41,6 +41,10 @@ router.put('/:id', userService.updateUser);
 
 router.delete('/:id', userService.deleteUser);
 
+router.get('/:id/prospect/won', prospectService.getProspectWon);
+
+router.get('/:id/prospect/lost', prospectService.getProspectLost);
+
 router.get('/:id/prospect/:prospectId', prospectService.getProspect);
 
 router.post('/:id/prospect/', prospectService.addProspect);

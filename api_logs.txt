@@ -1,9 +1,122 @@
-Request was made to: /
-Request was made to: /
-Request was made to: /user/
-Request was made to: /users/
-Request was made to: /users/
-Request was made to: /users
-Request was made to: /users/
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
 Request was made to: /api/v1/users/
-TypeError: Cannot read property 'role' of null
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/popular?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Error: invalid signature
+Request was made to: /api/v1/training/popular?offset=4&size=8
+Request was made to: /api/v1/training/newer?offset=4&size=8
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/popular?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/training/popular?offset=4&size=8
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=4&size=8
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Request was made to: /api/v1/training/newer?offset=0&size=4
+Error: invalid signature
+Request was made to: /api/v1/users/5f154d50e82102162c232168
+Error: invalid signature
+Error: [object Object]
+Error: [object Object]
+Request was made to: /
+Request was made to: /sitemap.xml
+Request was made to: /wp-admin/admin-ajax.php
+Request was made to: /
+Request was made to: /sitemap.xml
+Request was made to: /wp-admin/admin-ajax.php
+Request was made to: /
+Request was made to: /sitemap.xml
+Request was made to: /wp-admin/admin-ajax.php
+Request was made to: /
+Request was made to: /
+Request was made to: /robots.txt
+Request was made to: /robots.txt
+Request was made to: /sitemap.xml
+Request was made to: /wp-admin/admin-ajax.php
+Request was made to: /
+Request was made to: /
+Request was made to: /robots.txt
+Request was made to: /sitemap.xml
+Request was made to: /wp-admin/admin-ajax.php
+Request was made to: /
+Request was made to: /robots.txt
+Request was made to: /sitemap.xml
+Request was made to: /wp-admin/admin-ajax.php
+Request was made to: /
